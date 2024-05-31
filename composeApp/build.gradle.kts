@@ -46,6 +46,7 @@ kotlin {
             implementation(libs.navigator.screen.model)
             implementation(libs.navigator.transitions)
             implementation(libs.navigator.koin)
+            implementation(libs.tab.navigator)
             implementation(libs.koin.core)
         }
     }

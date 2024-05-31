@@ -31,7 +31,10 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import components.CustomNormalButton
+import components.CustomPasswordFiledInputComponent
+import components.CustomTextFiledInputComponent
 import components.HeightSpacer
+import components.TermAndCondition
 import composemultiplatformproject.composeapp.generated.resources.Res
 import composemultiplatformproject.composeapp.generated.resources.compose_multiplatform
 import composemultiplatformproject.composeapp.generated.resources.password_hide
@@ -101,98 +104,5 @@ fun SignupScreenContent() {
             HeightSpacer(20.dp)
         }
 
-    }
-}
-
-@Composable
-fun CustomTextFiledInputComponent(
-    modifier: Modifier = Modifier,
-    textValue: String,
-    onTextChanged: (String) -> Unit,
-) {
-    var textFieldValue by remember {
-        mutableStateOf(TextFieldValue(text = textValue))
-    }
-    TextField(
-        value = textFieldValue,
-        onValueChange = { newValue ->
-            textFieldValue = newValue
-            onTextChanged(newValue.text)
-        }, colors = TextFieldDefaults.colors(
-            disabledContainerColor = Color.Transparent,
-            focusedContainerColor = Color.Transparent,
-            unfocusedContainerColor = Color.Transparent
-        ), modifier = Modifier.fillMaxWidth().then(modifier)
-    )
-}
-
-@Composable
-fun CustomPasswordFiledInputComponent(
-    modifier: Modifier = Modifier,
-    textValue: String,
-    onTextChanged: (String) -> Unit,
-) {
-    var textFieldValue by remember {
-        mutableStateOf(TextFieldValue(text = textValue))
-    }
-    var passwordVisibility: Boolean by remember { mutableStateOf(false) }
-    TextField(
-        value = textFieldValue,
-        visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
-        trailingIcon = {
-            val icon = if (passwordVisibility)
-                painterResource(Res.drawable.password_hide)
-            else
-                painterResource(Res.drawable.compose_multiplatform)
-            IconButton(onClick = {
-                passwordVisibility = !passwordVisibility
-            }) {
-                Icon(
-                    painter = icon,
-                    contentDescription = "Visibility Icon"
-                )
-            }
-
-        },
-        onValueChange = {
-            textFieldValue = it
-
-        }, colors = TextFieldDefaults.colors(
-            disabledContainerColor = Color.Transparent,
-            focusedContainerColor = Color.Transparent,
-            unfocusedContainerColor = Color.Transparent
-        ), modifier = Modifier.fillMaxWidth().then(modifier)
-    )
-}
-
-@Composable
-fun TermAndCondition(modifier: Modifier = Modifier) {
-    // in below line we are setting
-    // the state of our checkbox.
-    var checkedState by remember { mutableStateOf(false) }
-    // in below line we are displaying a row
-    // and we are creating a checkbox in a row.
-    Row(
-        modifier = Modifier.fillMaxWidth().then(modifier),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Checkbox(
-            // below line we are setting
-            // the state of checkbox.
-            checked = checkedState,
-            // below line is use to add padding
-            // to our checkbox.
-            modifier = Modifier,
-            // below line is use to add on check
-            // change to our checkbox.
-            onCheckedChange = { checkedState = it },
-        )
-        // below line is use to add text to our check box and we are
-        // adding padding to our text of checkbox
-        Text(
-            text = "By Creating An Account you have to agree with our term & condition",
-            style = MaterialTheme.typography.labelSmall
-        )
     }
 }

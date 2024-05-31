@@ -38,6 +38,12 @@ fun getTypography(): Typography {
             fontSize = 16.sp,
             color = light_gray
         ),
+        displayLarge = TextStyle(
+            fontFamily = poppins,
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            color = Color.Black
+        ),
     )
 }
 
