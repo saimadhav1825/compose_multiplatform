@@ -34,6 +34,8 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import coil3.compose.AsyncImage
@@ -41,6 +43,7 @@ import composemultiplatformproject.composeapp.generated.resources.Res
 import composemultiplatformproject.composeapp.generated.resources.profile
 import model.KeyValueModel
 import org.jetbrains.compose.resources.stringResource
+import presentation.profileedit.ProfileEditScreen
 
 class ProfileScreen : Tab {
 
@@ -71,6 +74,7 @@ class ProfileScreen : Tab {
 
 @Composable
 fun ProfileScreenContent(state: ProfileState) {
+    val navigator = LocalNavigator.currentOrThrow
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(20.dp),
@@ -78,7 +82,12 @@ fun ProfileScreenContent(state: ProfileState) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(imageVector = Icons.Default.PlayArrow, contentDescription = "App Icon")
-            Icon(imageVector = Icons.Default.Settings, contentDescription = "App Icon")
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = "Setting Icon",
+                modifier = Modifier.clickable {
+                    navigator.push(ProfileEditScreen())
+                })
         }
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),

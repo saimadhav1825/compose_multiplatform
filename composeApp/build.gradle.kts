@@ -49,7 +49,9 @@ kotlin {
             implementation(libs.tab.navigator)
             implementation(libs.koin.core)
             //Coil
+            implementation(libs.coil.compose.core)
             implementation(libs.coil.compose)
+            implementation(libs.coil.mp)
             implementation(libs.coil.network.ktor)
         }
     }
