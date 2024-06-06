@@ -79,9 +79,7 @@ fun LoginScreenContent() {
 
             HeightSpacer(20.dp)
             CustomNormalButton(
-                text = "Login",
-                containColor = MaterialTheme.colorScheme.background,
-                textColor = MaterialTheme.colorScheme.primary
+                text = "Login"
             ) {
                 navigator.push(RegistrationSuccessFullScreen())
             }

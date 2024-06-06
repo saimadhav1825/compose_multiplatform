@@ -20,11 +20,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import components.CustomNormalButton
 import composemultiplatformproject.composeapp.generated.resources.Res
 import composemultiplatformproject.composeapp.generated.resources.done
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import presentation.main.MainScreen
 import presentation.theme.green_color
 
 class RegistrationSuccessFullScreen : Screen {
@@ -37,6 +40,7 @@ class RegistrationSuccessFullScreen : Screen {
 @Preview
 @Composable
 fun RegistrationSuccessFullContent() {
+    val navigator = LocalNavigator.currentOrThrow
     Column(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxHeight(0.8f),
@@ -72,14 +76,12 @@ fun RegistrationSuccessFullContent() {
             }
 
         }
-        Column() {
+        Column {
             CustomNormalButton(
                 text = "Start Shopping",
-                containColor = MaterialTheme.colorScheme.background,
-                textColor = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(horizontal = 20.dp)
             ) {
-
+                navigator.push(MainScreen())
             }
         }
     }

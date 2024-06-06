@@ -1,6 +1,6 @@
 package presentation.profileedit
 
-import androidx.compose.material.icons.Icons
+/*import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MailOutline
@@ -17,8 +17,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import model.KeyValueModel
-import presentation.main.profile.ProfileState
+import presentation.main.profile.ProfileState*/
 
+/*
 class ProfileEditViewModel : ScreenModel {
     private val _profileEditState = MutableStateFlow(ProfileEditState())
     val profileEditState: StateFlow<ProfileEditState> = _profileEditState.asStateFlow()
@@ -39,4 +40,4 @@ class ProfileEditViewModel : ScreenModel {
 
 data class ProfileEditState(
     val settingList: List<KeyValueModel> = emptyList()
-)
+)*/

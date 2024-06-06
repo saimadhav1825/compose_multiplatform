@@ -1,6 +1,5 @@
 package presentation.theme
 
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
@@ -14,13 +13,6 @@ val platinum_color = Color(0xffE5E4E2)
 
 val lightColors = lightColorScheme(
     primary = whiteColor, secondary = blackColor,
-    background = blackColor, surfaceDim = light_gray,
-    outline = platinum_color
-
-)
-val darkColors = darkColorScheme(
-    primary = blackColor,
-    onPrimary = blackColor,
-    primaryContainer = blackColor,
-    onPrimaryContainer = blackColor
+    background = whiteColor, surfaceDim = light_gray,
+    outline = platinum_color, onBackground = blackColor
 )

@@ -97,9 +97,7 @@ fun SignupScreenContent() {
             TermAndCondition()
             HeightSpacer()
             CustomNormalButton(
-                text = "Login",
-                containColor = MaterialTheme.colorScheme.background,
-                textColor = MaterialTheme.colorScheme.primary
+                text = "Login"
             ) {
 
             }

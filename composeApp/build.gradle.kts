@@ -38,21 +38,16 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
             implementation(libs.navigator)
-            implementation(libs.navigator.screen.model)
             implementation(libs.navigator.transitions)
-            implementation(libs.navigator.koin)
             implementation(libs.tab.navigator)
-            implementation(libs.koin.core)
             //Coil
-            implementation(libs.coil.compose.core)
-            implementation(libs.coil.compose)
-            implementation(libs.coil.mp)
-            implementation(libs.coil.network.ktor)
+            implementation(libs.kamel)
         }
     }
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,7 +40,10 @@ fun WelcomeScreenContent() {
                 modifier = Modifier.padding(
                     horizontal = 20.dp,
                     vertical = 10.dp
-                ), text = stringResource(Res.string.login)
+                ),
+                text = stringResource(Res.string.login),
+                containColor = MaterialTheme.colorScheme.primary,
+                textColor = MaterialTheme.colorScheme.onBackground
             ) {
                 navigator.push(LoginScreen())
             }

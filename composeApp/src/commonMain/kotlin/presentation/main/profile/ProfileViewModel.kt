@@ -8,13 +8,13 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.ThumbUp
-import cafe.adriel.voyager.core.model.ScreenModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import model.KeyValueModel
 
+/*
 class ProfileViewModel : ScreenModel {
     private val _profileState = MutableStateFlow(ProfileState())
     val profileState: StateFlow<ProfileState> = _profileState.asStateFlow()
@@ -42,4 +42,4 @@ class ProfileViewModel : ScreenModel {
 data class ProfileState(
     val firstList: List<KeyValueModel> = emptyList(),
     val secondLsit: List<KeyValueModel> = emptyList()
-)
+)*/

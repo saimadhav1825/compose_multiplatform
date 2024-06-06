@@ -31,21 +31,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.model.rememberScreenModel
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import coil3.compose.AsyncImage
 import composemultiplatformproject.composeapp.generated.resources.Res
 import composemultiplatformproject.composeapp.generated.resources.profile
 import model.KeyValueModel
 import org.jetbrains.compose.resources.stringResource
-import presentation.profileedit.ProfileEditScreen
 
-class ProfileScreen : Tab {
+object ProfileScreenTab : Tab {
 
     override val options: TabOptions
         @Composable
@@ -55,7 +49,7 @@ class ProfileScreen : Tab {
 
             return remember {
                 TabOptions(
-                    index = 0u,
+                    index = 3u,
                     title = title,
                     icon = icon
                 )
@@ -64,7 +58,7 @@ class ProfileScreen : Tab {
 
     @Composable
     override fun Content() {
-        val profileViewModel = rememberScreenModel {
+        /*val profileViewModel = rememberScreenModel {
             ProfileViewModel()
         }
         val state by profileViewModel.profileState.collectAsState()
@@ -152,7 +146,7 @@ fun ProfileScreenContent(state: ProfileState) {
                     }
                 }
             }
-        }
+        }*/
     }
 }
 

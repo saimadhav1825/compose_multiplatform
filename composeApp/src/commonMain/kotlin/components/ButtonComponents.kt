@@ -21,7 +21,7 @@ fun CustomNormalButton(
     modifier: Modifier = Modifier,
     text: String,
     containColor: Color = MaterialTheme.colorScheme.onBackground,
-    textColor: Color = MaterialTheme.colorScheme.onPrimary,
+    textColor: Color = MaterialTheme.colorScheme.primary,
     onButtonClick: () -> Unit
 ) {
     Button(

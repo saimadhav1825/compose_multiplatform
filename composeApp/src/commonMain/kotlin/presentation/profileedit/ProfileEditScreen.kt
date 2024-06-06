@@ -28,7 +28,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import components.CustomTextFiledInputComponent
 import components.SocialSignButton
@@ -40,6 +39,7 @@ import org.jetbrains.compose.resources.painterResource
 class ProfileEditScreen : Screen {
     @Composable
     override fun Content() {
+/*
         val profileEditViewModel = rememberScreenModel {
             ProfileEditViewModel()
         }
@@ -159,6 +159,7 @@ fun ProfileEditScreenContent(state: ProfileEditState) {
                 }
             }
         }
+*/
 
     }
 
