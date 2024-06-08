@@ -15,6 +15,9 @@ junit = "4.13.2"
 kotlin = "2.0.0"
 voyager = "1.0.0"
 kamel-version = "0.9.5"
+compse-viewmodel = "2.8.0"
+ coroutinesVersion = "1.7.2"
+ ktorVersion = "2.3.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -31,7 +34,13 @@ navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "v
 navigator-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
 navigator-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
-
+viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "compse-viewmodel" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorVersion" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorVersion" }
+ktor-serialization-kotlinx = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorVersion" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktorVersion" }
+ktor-client-darwin= { module = "io.ktor:ktor-client-darwin", version.ref = "ktorVersion" }
 kamel = { module = "media.kamel:kamel-image", version.ref = "kamel-version" }
 
 

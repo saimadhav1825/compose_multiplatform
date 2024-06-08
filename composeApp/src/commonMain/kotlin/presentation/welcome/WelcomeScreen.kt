@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import components.CustomNormalButton
+import components.KamelImageComponents
 import components.OutlinedCustomButton
 import composemultiplatformproject.composeapp.generated.resources.Res
 import composemultiplatformproject.composeapp.generated.resources.login
@@ -34,7 +36,11 @@ class WelcomeScreen : Screen {
 @Composable
 fun WelcomeScreenContent() {
     val navigator = LocalNavigator.currentOrThrow
-    Box(modifier = Modifier.fillMaxSize().background(color = Color.Black)) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        KamelImageComponents(
+            imageUrl = "https://picsum.photos/seed/100/500/500",
+            contentScale = ContentScale.FillBounds
+        )
         Column(modifier = Modifier.align(Alignment.BottomCenter)) {
             CustomNormalButton(
                 modifier = Modifier.padding(

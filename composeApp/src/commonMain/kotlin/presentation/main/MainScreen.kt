@@ -14,7 +14,9 @@ import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import presentation.main.cart.CartScreenTab
 import presentation.main.home.HomeScreenTab
+import presentation.main.notification.NotificationScreenTab
 import presentation.main.profile.ProfileScreenTab
 
 class MainScreen : Screen {
@@ -29,6 +31,8 @@ class MainScreen : Screen {
                 bottomBar = {
                     BottomNavigation {
                         TabNavigationItem(HomeScreenTab)
+                        TabNavigationItem(CartScreenTab)
+                        TabNavigationItem(NotificationScreenTab)
                         TabNavigationItem(ProfileScreenTab)
                     }
                 },
