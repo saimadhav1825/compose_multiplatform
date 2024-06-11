@@ -30,6 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import components.CustomTextFiledInputComponent
 import components.SocialSignButton
 import composemultiplatformproject.composeapp.generated.resources.Res
@@ -48,20 +50,23 @@ class ProfileEditScreen : Screen {
 
 @Composable
 fun ProfileEditScreenContent(state: ProfileEditState) {
-
+    val navigator = LocalNavigator.currentOrThrow
     Column(modifier = Modifier.fillMaxSize()) {
-        IconButton(onClick = {
 
-        }) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Back Icon"
-            )
-        }
         LazyColumn(
             contentPadding = PaddingValues(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
+            item {
+                IconButton(onClick = {
+                    navigator.pop()
+                }) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back Icon"
+                    )
+                }
+            }
             item {
                 Row(
                     modifier = Modifier.fillMaxWidth(),

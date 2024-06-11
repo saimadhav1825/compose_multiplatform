@@ -104,7 +104,7 @@ fun ProfileScreenContent(state: ProfileState) {
                         contentDescription = "Setting Icon",
                         tint = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable {
-                            navigator.push(ProfileEditScreen())
+                            navigator.parent?.push(ProfileEditScreen())
                         })
                 }
             }

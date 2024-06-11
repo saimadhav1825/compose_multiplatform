@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -34,6 +35,9 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.android)
+            // Koin
+            api(libs.koin.android)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -44,12 +48,35 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
-            implementation(libs.navigator)
-            implementation(libs.navigator.transitions)
-            implementation(libs.tab.navigator)
+            //Navigation
+            with(libs.voyager) {
+                api(navigator)
+                api(koin)
+                api(tabs)
+                api(transitions)
+            }
             //Coil
             implementation(libs.kamel)
+
+            // ViewModel
             implementation(libs.viewmodel)
+            // Ktor
+            with(libs.ktor) {
+                api(core)
+                api(json)
+                api(contentNegotiation)
+                api(logging)
+                api(logging.logback)
+            }
+           // KotlinX Serialization Json
+            api(libs.kotlinx.serialization.json)
+
+            // Koin
+            with(libs.koin) {
+                api(core)
+                api(test)
+                api(compose)
+            }
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

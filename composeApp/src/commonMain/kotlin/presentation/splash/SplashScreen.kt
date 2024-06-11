@@ -12,7 +12,6 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import presentation.welcome.WelcomeScreen
 
 class SplashScreen : Screen {
 
@@ -21,7 +20,7 @@ class SplashScreen : Screen {
         val navigator = LocalNavigator.currentOrThrow
         LaunchedEffect(Unit) {
             delay(500)
-            navigator.push(WelcomeScreen())
+            navigator.push(SplashScreen())
         }
         SplashScreenContent()
     }
