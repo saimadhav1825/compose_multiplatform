@@ -37,6 +37,5 @@ class OnBoardingViewModel : ViewModel {
                 )
             )
         }
-
     }
 }

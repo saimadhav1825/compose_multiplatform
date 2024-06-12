@@ -68,7 +68,7 @@ class OnBoardingScreen : Screen {
 @Preview
 @Composable
 fun OnBoardingContent(onBoardingState: OnBoardingState) {
-    val navigator= LocalNavigator.currentOrThrow
+    val navigator = LocalNavigator.currentOrThrow
     val scope = rememberCoroutineScope()
     val pageState = rememberPagerState(initialPage = 0) {
         onBoardingState.list.size
@@ -80,7 +80,7 @@ fun OnBoardingContent(onBoardingState: OnBoardingState) {
             state = pageState,
             modifier = Modifier
                 .fillMaxHeight(0.9f)
-                .fillMaxWidth()
+                .fillMaxWidth(), userScrollEnabled = false
         ) { page ->
             OnBoardingItem(item = onBoardingState.list[page])
         }
@@ -146,7 +146,8 @@ fun Indicator(isSelected: Boolean) {
             .width(width.value)
             .clip(CircleShape)
             .background(
-                color = if (isSelected) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.surfaceDim
+                color = if (isSelected) MaterialTheme.colorScheme.onBackground
+                else MaterialTheme.colorScheme.surfaceDim
             )
     ) {
 
@@ -163,11 +164,7 @@ fun OnBoardingItem(item: OnBoardingModel) {
         KamelImageComponents(
             imageUrl = item.image, contentScale = ContentScale.FillBounds,
             modifier = Modifier.fillMaxHeight(0.7f)
-                .fillMaxWidth().graphicsLayer(
-                    rotationZ = { fraction: Float ->
-                        45f * fraction
-                    }
-                ).clip(RoundedCornerShape(20.dp))
+                .fillMaxWidth().clip(RoundedCornerShape(20.dp))
         )
 
         Spacer(modifier = Modifier.height(25.dp))
@@ -186,14 +183,4 @@ fun OnBoardingItem(item: OnBoardingModel) {
             color = MaterialTheme.colorScheme.onBackground,
         )
     }
-}
-
-// Extension function to create a graphics layer with varying rotation
-fun Modifier.graphicsLayer(rotationZ: (Float) -> Float): Modifier {
-    return this.then(
-        Modifier.graphicsLayer {
-            val fraction = size.height / size.width
-            rotationZ(rotationZ(fraction))
-        }
-    )
 }
