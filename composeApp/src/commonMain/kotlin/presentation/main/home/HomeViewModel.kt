@@ -3,12 +3,13 @@ package presentation.main.home
 import core.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import model.FashionItemModel
 
 class HomeViewModel : ViewModel {
     private val _uiState = MutableStateFlow(HomeScreenState())
-    val uiState: StateFlow<HomeScreenState> = _uiState
+    val uiState: StateFlow<HomeScreenState> = _uiState.asStateFlow()
 
     init {
         fashionTypeList()

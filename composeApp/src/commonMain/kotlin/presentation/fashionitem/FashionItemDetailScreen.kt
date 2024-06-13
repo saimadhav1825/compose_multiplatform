@@ -2,6 +2,7 @@ package presentation.fashionitem
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -10,21 +11,42 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import components.KamelImageComponents
+import components.StarRatingBar
 import core.viewModel
 
 object FashionItemDetailScreen : Screen {
@@ -41,31 +63,112 @@ object FashionItemDetailScreen : Screen {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FashionItemDetailContent(uiState: FashionDetailState) {
+    val navigator = LocalNavigator.currentOrThrow
+    var count by rememberSaveable {
+        mutableIntStateOf(0)
+    }
     val pageState = rememberPagerState(initialPage = 0) {
         uiState.imagesList.size
     }
     Column(modifier = Modifier.fillMaxSize()) {
-        Box {
-            HorizontalPager(
-                state = pageState,
-                modifier = Modifier
-                    .fillMaxHeight(0.9f)
-                    .fillMaxWidth()
-            ) { page ->
-                KamelImageComponents(
-                    modifier = Modifier.fillMaxHeight(0.5f),
-                    imageUrl = uiState.imagesList[page]
-                )
+        Column(
+            modifier = Modifier
+                .fillMaxHeight(0.5f).background(Color.Blue)
+        ) {
+            Box(modifier = Modifier.fillMaxWidth()) {
+                HorizontalPager(
+                    state = pageState,
+                    modifier = Modifier.fillMaxWidth()
+                ) { page ->
+                    KamelImageComponents(
+                        modifier = Modifier.fillMaxHeight(),
+                        imageUrl = uiState.imagesList[page], contentScale = ContentScale.FillBounds
+                    )
+                }
+                Box(modifier = Modifier.align(Alignment.TopStart).padding(20.dp)) {
+                    IconButton(onClick = {
+                        navigator.pop()
+                    }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back Icon"
+                        )
+                    }
+                }
+                Box(modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 20.dp)) {
+                    Indicators(uiState.imagesList.size, pageState.currentPage)
+                }
+                Box(
+                    modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp)
+                        .background(color = Color.White, shape = CircleShape).size(25.dp)
+                        .padding(3.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Favorite,
+                        tint = Color.Black,
+                        contentDescription = "Favourite"
+                    )
+                }
             }
-            Indicators(uiState.imagesList.size, pageState.currentPage)
         }
 
-        Box {
-            Column {
+        Column(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f).clip(
+                RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
+            ).background(color = Color.Red)
+        ) {
+            Column(modifier = Modifier.fillMaxWidth().padding(15.dp)) {
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Row(modifier = Modifier.fillMaxWidth(0.7f)) {
+                        Column {
+                            Text("Nike", style = MaterialTheme.typography.headlineSmall)
+                            Text("Sneakers", style = MaterialTheme.typography.labelSmall)
+                            Row {
+                                StarRatingBar(5, 5f)
+                                Text(
+                                    "(320 Reviews)",
+                                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp)
+                                )
+                            }
+                        }
+                    }
+                    Column(
+                        modifier = Modifier.fillMaxWidth(0.3f),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Row(
+                            modifier = Modifier.background(
+                                color = MaterialTheme.colorScheme.surfaceDim,
+                                shape = MaterialTheme.shapes.extraLarge
+                            )
+                        ) {
 
+                            Text("-", modifier = Modifier.clickable {
+                                if (count > 0) {
+                                    count--
+                                }
+                            }.padding(5.dp))
+                            Text(
+                                modifier = Modifier.padding(5.dp),
+                                text = count.toString(),
+                                style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.secondary)
+                            )
+                            Text("+", modifier = Modifier.clickable {
+                                if (count > -1) {
+                                    count++
+                                }
+                            }.padding(5.dp))
+                        }
+                        Text(
+                            "Available In Stock",
+                            style = MaterialTheme.typography.headlineSmall.copy(fontSize = 10.sp)
+                        )
+                    }
+                }
             }
-        }
 
+        }
     }
 }
 

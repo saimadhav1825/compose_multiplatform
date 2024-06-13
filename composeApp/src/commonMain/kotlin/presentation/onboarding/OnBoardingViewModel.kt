@@ -3,13 +3,14 @@ package presentation.onboarding
 import core.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import model.OnBoardingModel
 import presentation.country.CountryUiState
 
 class OnBoardingViewModel : ViewModel {
     private val _uiState = MutableStateFlow(OnBoardingState())
-    val uiState: StateFlow<OnBoardingState> = _uiState
+    val uiState: StateFlow<OnBoardingState> = _uiState.asStateFlow()
 
     init {
         onBoardingList()

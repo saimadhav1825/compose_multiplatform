@@ -6,6 +6,7 @@ import data.CountryListResponseModel
 import domain.CountryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -13,7 +14,7 @@ class CountryViewModel(
     private val repository: CountryRepository
 ) : ViewModel {
     private val _uiState = MutableStateFlow(CountryUiState())
-    val uiState: StateFlow<CountryUiState> = _uiState
+    val uiState: StateFlow<CountryUiState> = _uiState.asStateFlow()
 
     init {
         getCountryList()
