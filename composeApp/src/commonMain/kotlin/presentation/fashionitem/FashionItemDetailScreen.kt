@@ -64,16 +64,13 @@ object FashionItemDetailScreen : Screen {
 @Composable
 fun FashionItemDetailContent(uiState: FashionDetailState) {
     val navigator = LocalNavigator.currentOrThrow
-    var count by rememberSaveable {
-        mutableIntStateOf(0)
-    }
     val pageState = rememberPagerState(initialPage = 0) {
         uiState.imagesList.size
     }
     Column(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
-                .fillMaxHeight(0.5f).background(Color.Blue)
+                .fillMaxHeight(0.5f)
         ) {
             Box(modifier = Modifier.fillMaxWidth()) {
                 HorizontalPager(
@@ -111,63 +108,6 @@ fun FashionItemDetailContent(uiState: FashionDetailState) {
                     )
                 }
             }
-        }
-
-        Column(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f).clip(
-                RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
-            ).background(color = Color.Red)
-        ) {
-            Column(modifier = Modifier.fillMaxWidth().padding(15.dp)) {
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    Row(modifier = Modifier.fillMaxWidth(0.7f)) {
-                        Column {
-                            Text("Nike", style = MaterialTheme.typography.headlineSmall)
-                            Text("Sneakers", style = MaterialTheme.typography.labelSmall)
-                            Row {
-                                StarRatingBar(5, 5f)
-                                Text(
-                                    "(320 Reviews)",
-                                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp)
-                                )
-                            }
-                        }
-                    }
-                    Column(
-                        modifier = Modifier.fillMaxWidth(0.3f),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Row(
-                            modifier = Modifier.background(
-                                color = MaterialTheme.colorScheme.surfaceDim,
-                                shape = MaterialTheme.shapes.extraLarge
-                            )
-                        ) {
-
-                            Text("-", modifier = Modifier.clickable {
-                                if (count > 0) {
-                                    count--
-                                }
-                            }.padding(5.dp))
-                            Text(
-                                modifier = Modifier.padding(5.dp),
-                                text = count.toString(),
-                                style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.secondary)
-                            )
-                            Text("+", modifier = Modifier.clickable {
-                                if (count > -1) {
-                                    count++
-                                }
-                            }.padding(5.dp))
-                        }
-                        Text(
-                            "Available In Stock",
-                            style = MaterialTheme.typography.headlineSmall.copy(fontSize = 10.sp)
-                        )
-                    }
-                }
-            }
-
         }
     }
 }

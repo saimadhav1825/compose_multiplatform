@@ -55,6 +55,8 @@ kotlin {
                 api(tabs)
                 api(transitions)
             }
+
+            implementation(libs.logger)
             //Coil
             implementation(libs.kamel)
 
