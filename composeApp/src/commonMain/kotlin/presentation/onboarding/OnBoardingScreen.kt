@@ -54,6 +54,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import presentation.login.LoginScreen
+import presentation.welcome.WelcomeScreen
 
 class OnBoardingScreen : Screen {
     @Composable
@@ -88,7 +89,7 @@ fun OnBoardingContent(onBoardingState: OnBoardingState) {
             if (pageState.currentPage + 1 < onBoardingState.list.size) scope.launch {
                 pageState.scrollToPage(pageState.currentPage + 1)
             } else {
-                navigator.push(LoginScreen())
+                navigator.push(WelcomeScreen())
             }
         }
     }
